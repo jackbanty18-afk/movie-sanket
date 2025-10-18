@@ -2,8 +2,13 @@ import { logAppEvent, logAccessRequest, logAuditTrail, ensureLoggingTables } fro
 import { verifyJWT } from './auth';
 import crypto from 'crypto';
 
-// Initialize logging tables
-ensureLoggingTables();
+// Initialize logging tables (skip on serverless/prod with Postgres)
+(() => {
+  const disable = !!process.env.DATABASE_URL || process.env.DISABLE_SQLITE === '1' || process.env.VERCEL === '1';
+  if (!disable) {
+    try { ensureLoggingTables(); } catch { /* ignore in environments without sqlite */ }
+  }
+})();
 
 // Request ID generator
 export function generateRequestId(): string {
