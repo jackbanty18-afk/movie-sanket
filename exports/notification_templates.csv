@@ -1,0 +1,68 @@
+id,name,subject,content,type,variables,isActive,createdBy,createdAt,updatedAt
+template_welcome,"Welcome Message","Welcome to MD Talkies, {{userName}}!","Hello {{userName}},
+
+Welcome to MD Talkies! We're excited to have you join our community of movie enthusiasts.
+
+Enjoy browsing our latest movies and booking your favorite shows. Don't forget to check out our special offers and upcoming releases.
+
+Happy watching!
+
+The MD Talkies Team",general,"[""userName""]",1,system,2025-10-18T03:32:03.433Z,2025-10-18T03:32:03.433Z
+template_booking_confirmation,"Booking Confirmation","Your booking for {{movieTitle}} is confirmed!","Hi {{userName}},
+
+Great news! Your booking has been confirmed.
+
+Movie: {{movieTitle}}
+Theatre: {{theatreName}}
+Date & Time: {{showDateTime}}
+Seats: {{seats}}
+Total Amount: ₹{{totalAmount}}
+
+Please arrive 15 minutes before the show starts. Have a wonderful movie experience!
+
+Best regards,
+MD Talkies",booking,"[""userName"", ""movieTitle"", ""theatreName"", ""showDateTime"", ""seats"", ""totalAmount""]",1,system,2025-10-18T03:32:03.433Z,2025-10-18T03:32:03.433Z
+template_new_release,"New Movie Release","🎬 New Release Alert: {{movieTitle}} now showing!","Hey {{userName}},
+
+Exciting news! A fantastic new movie has just arrived at MD Talkies.
+
+🍿 {{movieTitle}}
+⭐ Rating: {{rating}}/10
+🎭 Genre: {{genre}}
+⏰ Duration: {{duration}} minutes
+
+Book your tickets now and be among the first to experience this amazing film. Special premiere pricing available for the first week!
+
+Book now: {{bookingLink}}
+
+See you at the movies!
+MD Talkies",promotional,"[""userName"", ""movieTitle"", ""rating"", ""genre"", ""duration"", ""bookingLink""]",1,system,2025-10-18T03:32:03.433Z,2025-10-18T03:32:03.433Z
+template_special_offer,"Special Offer","🎫 Special Offer: {{offerTitle}}","Hello {{userName}},
+
+We have an exclusive offer just for you!
+
+🎉 {{offerTitle}}
+💰 {{offerDescription}}
+📅 Valid until: {{expiryDate}}
+
+Don't miss out on this limited-time deal. Use code {{promoCode}} when booking your next movie.
+
+Terms and conditions apply. Happy movie watching!
+
+MD Talkies Team",promotional,"[""userName"", ""offerTitle"", ""offerDescription"", ""expiryDate"", ""promoCode""]",1,system,2025-10-18T03:32:03.433Z,2025-10-18T03:32:03.433Z
+template_system_maintenance,"System Maintenance","Scheduled Maintenance Notice","Dear {{userName}},
+
+We will be performing scheduled system maintenance to improve your experience.
+
+Maintenance Window:
+Start: {{maintenanceStart}}
+End: {{maintenanceEnd}}
+
+During this time, our booking system may be temporarily unavailable. We apologize for any inconvenience.
+
+For urgent assistance, please contact our support team.
+
+Thank you for your understanding.
+
+MD Talkies Technical Team",system,"[""userName"", ""maintenanceStart"", ""maintenanceEnd""]",1,system,2025-10-18T03:32:03.433Z,2025-10-18T03:32:03.433Z
+template_cfqoo7gwb,welcome,adfknjad,"hello {{rishi}}, how are you ",system,[],1,rudra@gmail.com,2025-10-18T03:36:01.245Z,2025-10-18T03:36:01.245Z

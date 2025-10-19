@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { getSeatTemplate, upsertSeatTemplate, deleteSeatTemplate, SeatTemplateRow } from "@/lib/db";
+import { getSeatTemplate, upsertSeatTemplate, deleteSeatTemplate, SeatTemplateRow } from "@/lib/db-router";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
       return Response.json({ error: "Theatre ID is required" }, { status: 400 });
     }
 
-    const template = getSeatTemplate(theatreId);
+    const template = await (getSeatTemplate as any)(theatreId);
     return Response.json({ template });
   } catch (error) {
     return Response.json({ error: "Failed to fetch seat template" }, { status: 500 });
@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
       updatedAt: new Date().toISOString()
     };
 
-    upsertSeatTemplate(templateData);
+    await (upsertSeatTemplate as any)(templateData);
     return Response.json({ success: true });
   } catch (error) {
     return Response.json({ error: "Failed to save seat template" }, { status: 500 });
@@ -68,7 +68,7 @@ export async function DELETE(req: NextRequest) {
       return Response.json({ error: "Theatre ID is required" }, { status: 400 });
     }
 
-    deleteSeatTemplate(theatreId);
+    await (deleteSeatTemplate as any)(theatreId);
     return Response.json({ success: true });
   } catch (error) {
     return Response.json({ error: "Failed to delete seat template" }, { status: 500 });

@@ -1,0 +1,4 @@
+id,request_id,action,resource_type,resource_id,old_values,new_values,user_email,user_id,ip_address,timestamp,created_at
+audit_1,req_test_6wklowciebl_5,user_ban,user,usr_bad_user,"{""status"": ""active""}","{""status"": ""banned"", ""reason"": ""spam""}",sanket@gmail.com,usr_sanket,192.168.1.1,2025-10-18T04:14:59.159Z,"2025-10-18 04:14:59"
+audit_2,req_test_6wklowciebl_6,movie_create,movie,movie_123,,"{""title"": ""Test Movie"", ""year"": 2024}",sanket@gmail.com,usr_sanket,192.168.1.1,2025-10-18T04:14:59.159Z,"2025-10-18 04:14:59"
+audit_3,req_test_6wklowciebl_7,role_assignment,user,usr_new_admin,"{""roles"": [""user""]}","{""roles"": [""user"", ""admin""]}",sanket@gmail.com,usr_sanket,192.168.1.1,2025-10-18T04:14:59.159Z,"2025-10-18 04:14:59"

@@ -1,0 +1,13 @@
+ticketId,userEmail,movieId,movieTitle,theatreName,dateKey,time,seats,total,purchasedAt,status,refundAmount,refundReason,refundAt,cancelledReason,updatedAt
+MDT-JCLNYY,rudra@gmail.com,m1,"Dark Secrets","Cinepolis: Magnet Mall, Bhandup (W)",2025-10-17,"09:15 PM","[{""id"":""E11"",""tier"":""PREMIUM"",""price"":220}]",220,2025-10-17T18:10:54.156Z,confirmed,0,,,,
+MDT-IJFNUG,ish@gmail.com,m4,"Cyber Wars","Cinepolis: Magnet Mall, Bhandup (W)",2025-10-17,"09:15 PM","[{""id"":""E9"",""tier"":""PREMIUM"",""price"":220}]",220,2025-10-17T18:12:45.405Z,confirmed,0,,,,
+MDT-3EKXDP,ish@gmail.com,mov_kbmxxniq,"housefull ","DADAR MALL",2025-10-19,"8:00 AM","[{""id"":""H7"",""tier"":""PREMIUM"",""price"":250}]",250,2025-10-18T02:29:03.684Z,confirmed,0,,,,
+MDT-8CCDTW,rishi@gmail.con,mov_kbmxxniq,"housefull ","DADAR MALL",2025-10-18,"02:00 PM","[{""id"":""E7"",""tier"":""PREMIUM"",""price"":250}]",250,2025-10-18T03:03:28.074Z,confirmed,0,,,,
+TICKET_712DCC4C12D02BF1,john@example.com,MOV_38,Spider-Man,Cinepolis,2024-01-06,19:46,"A1, A2",414,2025-10-13T23:02:12.564Z,confirmed,0,,,,2025-10-13T23:02:12.564Z
+TICKET_91F9596DBB7821F6,john@example.com,MOV_36,Avengers,"PVR Cinemas",2024-01-11,19:44,"A2, A3",461,2025-10-08T18:04:02.956Z,cancelled,0,,,,2025-10-08T18:04:02.956Z
+TICKET_F9E6C1E4D738E59A,john@example.com,MOV_60,Avengers,Carnival,2024-01-05,19:34,"A3, A4",431,2025-09-25T18:47:29.096Z,confirmed,0,,,,2025-09-25T18:47:29.096Z
+TICKET_3FC482747E31D834,jane@example.com,MOV_71,Superman,"PVR Cinemas",2024-01-28,19:12,"A1, A2",275,2025-10-01T21:48:38.529Z,pending,0,,,,2025-10-01T21:48:38.529Z
+TICKET_C2507F36F03C6969,jane@example.com,MOV_89,"Iron Man","PVR Cinemas",2024-01-04,19:25,"A2, A3",626,2025-09-24T16:57:04.214Z,pending,0,,,,2025-09-24T16:57:04.214Z
+TICKET_4E534C2858960137,rishi@example.com,MOV_97,Superman,Cinepolis,2024-01-21,19:33,"A1, A2",506,2025-09-25T11:59:29.517Z,cancelled,0,,,,2025-09-25T11:59:29.517Z
+MDT-HJG32B,rudra@gmail.com,mov_kbmxxniq,"housefull ","DADAR MALL",2025-10-18,"02:00 PM","[{""id"":""E3"",""tier"":""PREMIUM"",""price"":250}]",250,2025-10-18T07:35:21.521Z,confirmed,0,,,,
+MDT-408PUJ,rudra@gmail.com,mov_kbmxxniq,"housefull ","DADAR MALL",2025-10-18,"02:00 PM","[{""id"":""E3"",""tier"":""PREMIUM"",""price"":250}]",250,2025-10-18T07:35:50.280Z,confirmed,0,,,,

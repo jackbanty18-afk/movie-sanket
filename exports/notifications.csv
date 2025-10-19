@@ -1,0 +1,193 @@
+id,userEmail,title,message,createdAt,read
+ntf-1760724655184,rudra@gmail.com,"Booking confirmed","Dark Secrets • 2025-10-17 • 09:15 PM",2025-10-17T18:10:55.184Z,0
+ntf-1760724765494,ish@gmail.com,"Booking confirmed","Cyber Wars • 2025-10-17 • 09:15 PM",2025-10-17T18:12:45.494Z,1
+ntf-1760754544391,ish@gmail.com,"Booking confirmed","housefull  • 2025-10-19 • 8:00 AM",2025-10-18T02:29:04.391Z,1
+ntf-1760756608841,rishi@gmail.con,"Booking confirmed","housefull  • 2025-10-18 • 02:00 PM",2025-10-18T03:03:28.841Z,0
+notif_2485e534b0cf5029,rudra@gmail.com,"Welcome to MD Talkies, rudra!","Hello rudra,
+
+Welcome to MD Talkies! We're excited to have you join our community of movie enthusiasts.
+
+Enjoy browsing our latest movies and booking your favorite shows. Don't forget to check out our special offers and upcoming releases.
+
+Happy watching!
+
+The MD Talkies Team",2025-10-18T03:32:03.433Z,0
+notif_f68adb9ecd53a07e,ish@gmail.com,"Welcome to MD Talkies, ish!","Hello ish,
+
+Welcome to MD Talkies! We're excited to have you join our community of movie enthusiasts.
+
+Enjoy browsing our latest movies and booking your favorite shows. Don't forget to check out our special offers and upcoming releases.
+
+Happy watching!
+
+The MD Talkies Team",2025-10-18T03:32:03.433Z,0
+notif_88c8e9430667c41f,rishi@gmail.con,"Welcome to MD Talkies, rishi!","Hello rishi,
+
+Welcome to MD Talkies! We're excited to have you join our community of movie enthusiasts.
+
+Enjoy browsing our latest movies and booking your favorite shows. Don't forget to check out our special offers and upcoming releases.
+
+Happy watching!
+
+The MD Talkies Team",2025-10-18T03:32:03.433Z,0
+notif_3061d272fb25dbbe,john@example.com,"Welcome to MD Talkies, John Doe!","Hello John Doe,
+
+Welcome to MD Talkies! We're excited to have you join our community of movie enthusiasts.
+
+Enjoy browsing our latest movies and booking your favorite shows. Don't forget to check out our special offers and upcoming releases.
+
+Happy watching!
+
+The MD Talkies Team",2025-10-18T03:32:03.433Z,0
+notif_41ec5fe58df743db,sarah@example.com,"Welcome to MD Talkies, Sarah Johnson!","Hello Sarah Johnson,
+
+Welcome to MD Talkies! We're excited to have you join our community of movie enthusiasts.
+
+Enjoy browsing our latest movies and booking your favorite shows. Don't forget to check out our special offers and upcoming releases.
+
+Happy watching!
+
+The MD Talkies Team",2025-10-18T03:32:03.433Z,0
+notif_1e9d6ab7d36b4245,mike@example.com,"Welcome to MD Talkies, Mike Wilson!","Hello Mike Wilson,
+
+Welcome to MD Talkies! We're excited to have you join our community of movie enthusiasts.
+
+Enjoy browsing our latest movies and booking your favorite shows. Don't forget to check out our special offers and upcoming releases.
+
+Happy watching!
+
+The MD Talkies Team",2025-10-18T03:32:03.433Z,0
+notif_za7bo3zxs,rudra@gmail.com,"🎬 New Release Alert: {{movieTitle}} now showing!","Hey rudra,
+
+Exciting news! A fantastic new movie has just arrived at MD Talkies.
+
+🍿 {{movieTitle}}
+⭐ Rating: {{rating}}/10
+🎭 Genre: {{genre}}
+⏰ Duration: {{duration}} minutes
+
+Book your tickets now and be among the first to experience this amazing film. Special premiere pricing available for the first week!
+
+Book now: {{bookingLink}}
+
+See you at the movies!
+MD Talkies",2025-10-18T03:37:41.496Z,0
+notif_07et6ho84,ish@gmail.com,"🎬 New Release Alert: {{movieTitle}} now showing!","Hey ish,
+
+Exciting news! A fantastic new movie has just arrived at MD Talkies.
+
+🍿 {{movieTitle}}
+⭐ Rating: {{rating}}/10
+🎭 Genre: {{genre}}
+⏰ Duration: {{duration}} minutes
+
+Book your tickets now and be among the first to experience this amazing film. Special premiere pricing available for the first week!
+
+Book now: {{bookingLink}}
+
+See you at the movies!
+MD Talkies",2025-10-18T03:37:41.496Z,0
+notif_lpx8u3rn3,rishi@gmail.con,"🎬 New Release Alert: {{movieTitle}} now showing!","Hey rishi,
+
+Exciting news! A fantastic new movie has just arrived at MD Talkies.
+
+🍿 {{movieTitle}}
+⭐ Rating: {{rating}}/10
+🎭 Genre: {{genre}}
+⏰ Duration: {{duration}} minutes
+
+Book your tickets now and be among the first to experience this amazing film. Special premiere pricing available for the first week!
+
+Book now: {{bookingLink}}
+
+See you at the movies!
+MD Talkies",2025-10-18T03:37:41.496Z,0
+notif_67cz19ofh,john@example.com,"🎬 New Release Alert: {{movieTitle}} now showing!","Hey John Doe,
+
+Exciting news! A fantastic new movie has just arrived at MD Talkies.
+
+🍿 {{movieTitle}}
+⭐ Rating: {{rating}}/10
+🎭 Genre: {{genre}}
+⏰ Duration: {{duration}} minutes
+
+Book your tickets now and be among the first to experience this amazing film. Special premiere pricing available for the first week!
+
+Book now: {{bookingLink}}
+
+See you at the movies!
+MD Talkies",2025-10-18T03:37:41.496Z,0
+notif_8rjf50p6k,sarah@example.com,"🎬 New Release Alert: {{movieTitle}} now showing!","Hey Sarah Johnson,
+
+Exciting news! A fantastic new movie has just arrived at MD Talkies.
+
+🍿 {{movieTitle}}
+⭐ Rating: {{rating}}/10
+🎭 Genre: {{genre}}
+⏰ Duration: {{duration}} minutes
+
+Book your tickets now and be among the first to experience this amazing film. Special premiere pricing available for the first week!
+
+Book now: {{bookingLink}}
+
+See you at the movies!
+MD Talkies",2025-10-18T03:37:41.496Z,0
+notif_w21l35te4,mike@example.com,"🎬 New Release Alert: {{movieTitle}} now showing!","Hey Mike Wilson,
+
+Exciting news! A fantastic new movie has just arrived at MD Talkies.
+
+🍿 {{movieTitle}}
+⭐ Rating: {{rating}}/10
+🎭 Genre: {{genre}}
+⏰ Duration: {{duration}} minutes
+
+Book your tickets now and be among the first to experience this amazing film. Special premiere pricing available for the first week!
+
+Book now: {{bookingLink}}
+
+See you at the movies!
+MD Talkies",2025-10-18T03:37:41.496Z,0
+notif_custom_3f63bfb8e70d,rudra@gmail.com,"Custom Test Notification for rudra","Hello rudra,
+
+This is a test of the custom user selection system. You were specifically selected to receive this notification.
+
+This confirms that:
+✅ Custom user selection is working
+✅ Individual targeting is functional
+✅ Personalized messages are delivered
+
+Best regards,
+MD Talkies Admin",2025-10-18T03:42:54.318Z,0
+notif_custom_858541ce4086,ish@gmail.com,"Custom Test Notification for ish","Hello ish,
+
+This is a test of the custom user selection system. You were specifically selected to receive this notification.
+
+This confirms that:
+✅ Custom user selection is working
+✅ Individual targeting is functional
+✅ Personalized messages are delivered
+
+Best regards,
+MD Talkies Admin",2025-10-18T03:42:54.318Z,0
+notif_custom_46cd32e62507,rishi@gmail.con,"Custom Test Notification for rishi","Hello rishi,
+
+This is a test of the custom user selection system. You were specifically selected to receive this notification.
+
+This confirms that:
+✅ Custom user selection is working
+✅ Individual targeting is functional
+✅ Personalized messages are delivered
+
+Best regards,
+MD Talkies Admin",2025-10-18T03:42:54.318Z,0
+notif_z9zf2amk5,yash@gmail.com,"Welcome to MD Talkies, yash!","Hello yash,
+
+Welcome to MD Talkies! We're excited to have you join our community of movie enthusiasts.
+
+Enjoy browsing our latest movies and booking your favorite shows. Don't forget to check out our special offers and upcoming releases.
+
+Happy watching!
+
+The MD Talkies Team",2025-10-18T04:02:41.580Z,1
+ntf-1760772922177,rudra@gmail.com,"Booking confirmed","housefull  • 2025-10-18 • 02:00 PM",2025-10-18T07:35:22.177Z,0
+ntf-1760772950356,rudra@gmail.com,"Booking confirmed","housefull  • 2025-10-18 • 02:00 PM",2025-10-18T07:35:50.356Z,1

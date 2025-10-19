@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server';
-import { getAppLogs, getAccessLogs, getAuditTrails } from '@/lib/db';
+import { getAppLogs, getAccessLogs, getAuditTrails } from '@/lib/db-router';
 import { verifyJWT } from '@/lib/auth';
 
 export const runtime = 'nodejs';
@@ -32,27 +32,27 @@ export async function GET(req: NextRequest) {
       controller.enqueue(new TextEncoder().encode(data));
 
       // Set up periodic log polling
-      const interval = setInterval(() => {
+      const interval = setInterval(async () => {
         try {
           // Get recent logs (last 5 minutes)
           const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000).toISOString();
           
           // Get critical errors
-          const criticalErrors = getAppLogs({
+          const criticalErrors = await (getAppLogs as any)({
             startDate: fiveMinutesAgo,
             level: 'critical',
             limit: 10
           });
           
           // Get recent errors
-          const errors = getAppLogs({
+          const errors = await (getAppLogs as any)({
             startDate: fiveMinutesAgo,
             level: 'error',
             limit: 20
           });
           
           // Get failed requests (5xx errors)
-          const failedRequests = getAccessLogs({
+          const failedRequests = await (getAccessLogs as any)({
             startDate: fiveMinutesAgo,
             statusCode: 500,
             limit: 20
@@ -60,7 +60,7 @@ export async function GET(req: NextRequest) {
           
           // Get recent audit activities (last minute for real-time feel)
           const oneMinuteAgo = new Date(Date.now() - 60 * 1000).toISOString();
-          const recentAudits = getAuditTrails({
+          const recentAudits = await (getAuditTrails as any)({
             startDate: oneMinuteAgo,
             limit: 10
           });

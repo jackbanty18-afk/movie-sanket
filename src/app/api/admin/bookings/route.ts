@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { listAllBookings, getBooking, updateBookingStatus, processRefund, updateBookingSeats, getBookingsByUser } from "@/lib/db";
+import { listAllBookings, getBooking, updateBookingStatus, processRefund, updateBookingSeats, getBookingsByUser } from "@/lib/db-router";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -15,18 +15,18 @@ export async function GET(req: NextRequest) {
     
     if (ticketId) {
       // Get specific booking
-      const booking = getBooking(ticketId);
+      const booking = await (getBooking as any)(ticketId);
       if (!booking) {
         return Response.json({ error: "Booking not found" }, { status: 404 });
       }
       return Response.json({ booking });
     } else if (userId) {
       // Get bookings for specific user
-      const bookings = getBookingsByUser(userId);
+      const bookings = await (getBookingsByUser as any)(userId);
       return Response.json({ bookings, total: bookings.length });
     } else {
       // List all bookings with pagination
-      const result = listAllBookings({ status: status || undefined, limit, offset });
+      const result = await (listAllBookings as any)({ status: status || undefined, limit, offset });
       return Response.json(result);
     }
   } catch (error) {
@@ -46,25 +46,25 @@ export async function PUT(req: NextRequest) {
 
     switch (action) {
       case 'cancel':
-        updateBookingStatus(ticketId, 'cancelled', reason);
+        await (updateBookingStatus as any)(ticketId, 'cancelled', reason);
         break;
         
       case 'refund':
         if (refundAmount === undefined) {
           return Response.json({ error: "Refund amount is required" }, { status: 400 });
         }
-        processRefund(ticketId, refundAmount, reason);
+        await (processRefund as any)(ticketId, refundAmount, reason);
         break;
         
       case 'confirm':
-        updateBookingStatus(ticketId, 'confirmed');
+        await (updateBookingStatus as any)(ticketId, 'confirmed');
         break;
         
       case 'updateSeats':
         if (!seats) {
           return Response.json({ error: "Seats are required" }, { status: 400 });
         }
-        updateBookingSeats(ticketId, seats, seatCount);
+        await (updateBookingSeats as any)(ticketId, seats, seatCount);
         break;
         
       case 'updateStatus':
@@ -72,7 +72,7 @@ export async function PUT(req: NextRequest) {
         if (!status) {
           return Response.json({ error: "Status is required" }, { status: 400 });
         }
-        updateBookingStatus(ticketId, status, reason);
+        await (updateBookingStatus as any)(ticketId, status, reason);
         break;
         
       default:
@@ -96,7 +96,7 @@ export async function DELETE(req: NextRequest) {
       return Response.json({ error: "Ticket ID is required" }, { status: 400 });
     }
 
-    updateBookingStatus(ticketId, 'cancelled', reason);
+    await (updateBookingStatus as any)(ticketId, 'cancelled', reason);
     return Response.json({ success: true });
   } catch (error) {
     console.error("Failed to cancel booking:", error);

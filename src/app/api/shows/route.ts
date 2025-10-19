@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { listShows, listTheatres, getTheatrePricing, getSeatTemplate, listPricingTiers, getTheatreSchedules } from "@/lib/db";
+import { listShows, listTheatres, getTheatrePricing, getSeatTemplate, listPricingTiers } from "@/lib/db-router";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -12,12 +12,12 @@ export async function GET(req: NextRequest) {
   const includeSeatMaps = searchParams.get("includeSeatMaps") === 'true';
   const includePricing = searchParams.get("includePricing") === 'true';
   
-  const shows = listShows({ movieId: movieId || undefined, dateKey: dateKey || undefined, publishedOnly: true });
-  const theatres = listTheatres();
+  const shows = await (listShows as any)({ movieId: movieId || undefined, dateKey: dateKey || undefined, publishedOnly: true });
+  const theatres = await (listTheatres as any)();
   const theatreMap = Object.fromEntries(theatres.map((t: any) => [t.id, t.name]));
   
   // Get pricing tiers for enhanced pricing
-  const pricingTiers = includePricing ? listPricingTiers() : [];
+  const pricingTiers = includePricing ? await (listPricingTiers as any)() : [];
   
   const enhancedShows = [];
   
@@ -40,7 +40,7 @@ export async function GET(req: NextRequest) {
     
     // Add seat template if requested
     if (includeSeatMaps) {
-      const seatTemplate = getSeatTemplate(s.theatreId);
+      const seatTemplate = await (getSeatTemplate as any)(s.theatreId);
       if (seatTemplate) {
         enhancedShow.seatTemplate = {
           id: seatTemplate.id,
@@ -59,7 +59,7 @@ export async function GET(req: NextRequest) {
     
     // Add enhanced pricing if requested
     if (includePricing) {
-      const theatrePricing = getTheatrePricing(s.theatreId);
+      const theatrePricing = await (getTheatrePricing as any)(s.theatreId);
       if (theatrePricing.length > 0) {
         enhancedShow.pricingTiers = theatrePricing.map(tp => {
           const tier = pricingTiers.find(pt => pt.id === tp.pricingTierId);

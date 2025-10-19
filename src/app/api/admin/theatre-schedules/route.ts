@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { getTheatreSchedules, upsertTheatreSchedule, deleteTheatreSchedule, TheatreScheduleRow } from "@/lib/db";
+import { getTheatreSchedules, upsertTheatreSchedule, deleteTheatreSchedule, TheatreScheduleRow } from "@/lib/db-router";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
       return Response.json({ error: "Theatre ID is required" }, { status: 400 });
     }
 
-    const schedules = getTheatreSchedules(theatreId);
+    const schedules = await (getTheatreSchedules as any)(theatreId);
     return Response.json({ schedules });
   } catch (error) {
     return Response.json({ error: "Failed to fetch theatre schedules" }, { status: 500 });
@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
       createdAt: new Date().toISOString()
     };
 
-    upsertTheatreSchedule(scheduleData);
+    await (upsertTheatreSchedule as any)(scheduleData);
     return Response.json({ success: true });
   } catch (error) {
     return Response.json({ error: "Failed to save theatre schedule" }, { status: 500 });
@@ -55,9 +55,9 @@ export async function DELETE(req: NextRequest) {
     }
 
     if (dayOfWeek !== null) {
-      deleteTheatreSchedule(theatreId, Number(dayOfWeek));
+      await (deleteTheatreSchedule as any)(theatreId, Number(dayOfWeek));
     } else {
-      deleteTheatreSchedule(theatreId);
+      await (deleteTheatreSchedule as any)(theatreId);
     }
     
     return Response.json({ success: true });

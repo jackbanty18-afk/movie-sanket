@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { getUserByEmail } from "@/lib/db";
+import { getUserByEmail } from "@/lib/db-router";
 import { verifyPassword, signJWT } from "@/lib/auth";
 import { withRequestLogging, AuditLogger, getClientIP } from "@/lib/logger";
 
@@ -19,7 +19,7 @@ async function loginHandler(req: NextRequest) {
     return new Response(JSON.stringify({ error: "missing fields" }), { status: 400 });
   }
 
-  const user = getUserByEmail(email);
+  const user = await (getUserByEmail as any)(email);
   if (!user) {
     auditLogger.logLogin(email, false, 'User not found');
     return new Response(JSON.stringify({ error: "invalid credentials" }), { status: 401 });
@@ -31,14 +31,14 @@ async function loginHandler(req: NextRequest) {
     return new Response(JSON.stringify({ error: "invalid credentials" }), { status: 401 });
   }
 
-  const { getRolesByEmail, assignRoleToUserId, ensureRole } = await import("@/lib/db");
+  const { getRolesByEmail, assignRoleToUserId, ensureRole } = await import("@/lib/db-router");
   // auto-assign admin if matches env var on first login
   const adminEmail = process.env.ADMIN_EMAIL?.toLowerCase();
   if (adminEmail && adminEmail === user.email.toLowerCase()) {
-    ensureRole("admin");
-    assignRoleToUserId(user.id, "admin");
+    await (ensureRole as any)("admin");
+    await (assignRoleToUserId as any)(user.id, "admin");
   }
-  const roles = getRolesByEmail(user.email);
+  const roles = await (getRolesByEmail as any)(user.email);
 
   // Log successful login
   auditLogger.logLogin(email, true);

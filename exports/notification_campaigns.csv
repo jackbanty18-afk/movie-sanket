@@ -1,0 +1,6 @@
+id,name,templateId,userSegment,scheduledAt,sentAt,status,recipientCount,sentCount,createdBy,createdAt,updatedAt
+campaign_91zikibw8,knatara,template_new_release,all,,2025-10-18T03:37:41.452Z,sent,6,6,rudra@gmail.com,2025-10-18T03:37:41.460Z,2025-10-18T03:37:41.614Z
+campaign_test_7da802c2,"Test Custom Selection",template_welcome,custom,,2025-10-18T03:42:54.318Z,sent,3,3,test-script,2025-10-18T03:42:54.318Z,2025-10-18T03:42:54.318Z
+campaign_vhvlew256,"new welcome",template_welcome,custom,2025-10-18T09:16,,scheduled,1,0,rudra@gmail.com,2025-10-18T03:45:31.539Z,2025-10-18T03:45:31.539Z
+campaign_gpjgf2dd0,welcome,template_welcome,custom,2025-10-18T09:30,,scheduled,1,0,rudra@gmail.com,2025-10-18T04:00:11.005Z,2025-10-18T04:00:11.005Z
+campaign_ps7ejfk1r,rusbu,template_welcome,custom,,2025-10-18T04:02:41.505Z,sent,1,1,rudra@gmail.com,2025-10-18T04:02:41.516Z,2025-10-18T04:02:41.629Z

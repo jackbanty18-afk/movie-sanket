@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server';
-import { getLogStatistics } from '@/lib/db';
+import { getLogStatistics } from '@/lib/db-router';
 import { withRequestLogging } from '@/lib/logger';
 import { verifyJWT } from '@/lib/auth';
 
@@ -25,7 +25,7 @@ async function logStatsHandler(req: NextRequest) {
   const days = parseInt(url.searchParams.get('days') || '7');
   
   try {
-    const stats = getLogStatistics(days);
+    const stats = await (getLogStatistics as any)(days);
     
     logger.info('admin', 'Log statistics retrieved', { 
       days,

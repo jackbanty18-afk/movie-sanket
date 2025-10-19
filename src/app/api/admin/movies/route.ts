@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { getRolesByEmail, listMovies, upsertMovie, deleteMovie, getMovie, listCategories, setMovieCategories, getMovieCategoryIds } from "@/lib/db";
+import { getRolesByEmail, listMovies, upsertMovie, deleteMovie, getMovie, listCategories, setMovieCategories, getMovieCategoryIds } from "@/lib/db-router";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -17,12 +17,12 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const id = searchParams.get("id");
   if (id) {
-    const movie = getMovie(id);
-    const categories = listCategories();
-    const selected = getMovieCategoryIds(id);
+    const movie = await (getMovie as any)(id);
+    const categories = await (listCategories as any)();
+    const selected = await (getMovieCategoryIds as any)(id);
     return Response.json({ movie, categories, selected });
   }
-  return Response.json({ movies: listMovies() });
+  return Response.json({ movies: await (listMovies as any)() });
 }
 
 export async function POST(req: NextRequest) {
@@ -33,8 +33,8 @@ export async function POST(req: NextRequest) {
   const now = new Date().toISOString();
   const id = body.id || `mov_${Math.random().toString(36).slice(2,10)}`;
   const movie = { id, title: body.title, synopsis: body.synopsis, poster: body.poster, backdrop: body.backdrop, year: body.year ?? null, rating: body.rating ?? null, durationMins: body.durationMins ?? null, releaseDate: body.releaseDate || null, languages: (body.languages || []).join(','), formats: (body.formats || []).join(','), published: body.published ? 1 : 0, createdAt: now, updatedAt: now };
-  upsertMovie(movie as any);
-  if (Array.isArray(body.categoryIds)) setMovieCategories(id, body.categoryIds.map((n:number)=>Number(n)));
+  await (upsertMovie as any)(movie as any);
+  if (Array.isArray(body.categoryIds)) await (setMovieCategories as any)(id, body.categoryIds.map((n:number)=>Number(n)));
   return Response.json({ id });
 }
 
@@ -46,8 +46,8 @@ export async function PUT(req: NextRequest) {
   if (!body.id) return new Response(JSON.stringify({ error: "id required" }), { status: 400 });
   const now = new Date().toISOString();
   const movie = { id: body.id, title: body.title, synopsis: body.synopsis, poster: body.poster, backdrop: body.backdrop, year: body.year ?? null, rating: body.rating ?? null, durationMins: body.durationMins ?? null, releaseDate: body.releaseDate || null, languages: (body.languages || []).join(','), formats: (body.formats || []).join(','), published: body.published ? 1 : 0, createdAt: body.createdAt || now, updatedAt: now };
-  upsertMovie(movie as any);
-  if (Array.isArray(body.categoryIds)) setMovieCategories(body.id, body.categoryIds.map((n:number)=>Number(n)));
+  await (upsertMovie as any)(movie as any);
+  if (Array.isArray(body.categoryIds)) await (setMovieCategories as any)(body.id, body.categoryIds.map((n:number)=>Number(n)));
   return Response.json({ ok: true });
 }
 
@@ -58,6 +58,6 @@ export async function DELETE(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const id = searchParams.get("id");
   if (!id) return new Response(JSON.stringify({ error: "id required" }), { status: 400 });
-  deleteMovie(id);
+  await (deleteMovie as any)(id);
   return Response.json({ ok: true });
 }

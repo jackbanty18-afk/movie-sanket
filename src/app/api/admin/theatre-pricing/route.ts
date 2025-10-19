@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { getTheatrePricing, upsertTheatrePricing, deleteTheatrePricing, TheatrePricingRow, listTheatres, listPricingTiers } from "@/lib/db";
+import { getTheatrePricing, upsertTheatrePricing, deleteTheatrePricing, TheatrePricingRow, listTheatres, listPricingTiers } from "@/lib/db-router";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -13,8 +13,8 @@ export async function GET(req: NextRequest) {
       return Response.json({ error: "Theatre ID is required" }, { status: 400 });
     }
 
-    const pricing = getTheatrePricing(theatreId);
-    const pricingTiers = listPricingTiers();
+    const pricing = await (getTheatrePricing as any)(theatreId);
+    const pricingTiers = await (listPricingTiers as any)();
     
     return Response.json({ pricing, pricingTiers });
   } catch (error) {
@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
       vipPrice: Number(vipPrice)
     };
 
-    upsertTheatrePricing(pricingData);
+    await (upsertTheatrePricing as any)(pricingData);
     return Response.json({ success: true });
   } catch (error) {
     return Response.json({ error: "Failed to save theatre pricing" }, { status: 500 });
@@ -57,7 +57,7 @@ export async function DELETE(req: NextRequest) {
       return Response.json({ error: "Theatre ID and Pricing Tier ID are required" }, { status: 400 });
     }
 
-    deleteTheatrePricing(theatreId, Number(pricingTierId));
+    await (deleteTheatrePricing as any)(theatreId, Number(pricingTierId));
     return Response.json({ success: true });
   } catch (error) {
     return Response.json({ error: "Failed to delete theatre pricing" }, { status: 500 });

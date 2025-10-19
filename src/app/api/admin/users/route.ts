@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { listAllUsers, getUserWithStats, banUser, unbanUser, updateUserStatus, assignRoleToUserId, getRolesByEmail } from "@/lib/db";
+import { listAllUsers, getUserWithStats, banUser, unbanUser, updateUserStatus, assignRoleToUserId, getRolesByEmail } from "@/lib/db-router";
 import { withRequestLogging, AuditLogger, getClientIP } from "@/lib/logger";
 import { verifyJWT } from "@/lib/auth";
 
@@ -27,7 +27,7 @@ async function getUsersHandler(req: NextRequest) {
     
     if (userId) {
       // Get specific user with stats
-      const user = getUserWithStats(userId);
+      const user = await (getUserWithStats as any)(userId);
       if (!user) {
         return Response.json({ error: "User not found" }, { status: 404 });
       }
@@ -36,7 +36,7 @@ async function getUsersHandler(req: NextRequest) {
       return Response.json({ user });
     } else {
       // List all users
-      const users = listAllUsers();
+      const users = await (listAllUsers as any)();
       
       logger.info('admin', `Admin ${payload.email} listed all users`, { userCount: users.length });
       return Response.json({ users });
@@ -74,7 +74,7 @@ async function updateUserHandler(req: NextRequest) {
     }
 
     // Get user before changes for audit log
-    const userBefore = getUserWithStats(userId);
+    const userBefore = await (getUserWithStats as any)(userId);
     if (!userBefore) {
       return Response.json({ error: "User not found" }, { status: 404 });
     }
@@ -84,25 +84,25 @@ async function updateUserHandler(req: NextRequest) {
         if (!reason) {
           return Response.json({ error: "Ban reason is required" }, { status: 400 });
         }
-        banUser(userId, reason);
+        await (banUser as any)(userId, reason);
         auditLogger.logUserStatusChange(userId, userBefore.status, 'banned', reason);
         logger.info('admin', `Admin ${payload.email} banned user ${userBefore.email}`, { reason });
         break;
         
       case 'unban':
-        unbanUser(userId);
+        await (unbanUser as any)(userId);
         auditLogger.logUserStatusChange(userId, userBefore.status, 'active', 'Unbanned by admin');
         logger.info('admin', `Admin ${payload.email} unbanned user ${userBefore.email}`);
         break;
         
       case 'suspend':
-        updateUserStatus(userId, 'suspended');
+        await (updateUserStatus as any)(userId, 'suspended');
         auditLogger.logUserStatusChange(userId, userBefore.status, 'suspended', reason);
         logger.info('admin', `Admin ${payload.email} suspended user ${userBefore.email}`);
         break;
         
       case 'activate':
-        updateUserStatus(userId, 'active');
+        await (updateUserStatus as any)(userId, 'active');
         auditLogger.logUserStatusChange(userId, userBefore.status, 'active', 'Activated by admin');
         logger.info('admin', `Admin ${payload.email} activated user ${userBefore.email}`);
         break;
@@ -111,9 +111,9 @@ async function updateUserHandler(req: NextRequest) {
         if (!role) {
           return Response.json({ error: "Role is required" }, { status: 400 });
         }
-        const oldRoles = getRolesByEmail(userBefore.email);
-        assignRoleToUserId(userId, role);
-        const newRoles = getRolesByEmail(userBefore.email);
+        const oldRoles = await (getRolesByEmail as any)(userBefore.email);
+        await (assignRoleToUserId as any)(userId, role);
+        const newRoles = await (getRolesByEmail as any)(userBefore.email);
         auditLogger.logUserAction('role_assignment', 'user', userId, 
           { roles: oldRoles }, 
           { roles: newRoles, assignedRole: role }

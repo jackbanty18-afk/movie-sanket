@@ -1,0 +1,8 @@
+id,request_id,method,path,status_code,user_email,user_id,ip_address,user_agent,duration_ms,request_size,response_size,timestamp,created_at
+access_1,req_test_6wklowciebl_1,GET,/api/movies,200,sanket@gmail.com,usr_sanket,192.168.1.1,"Mozilla/5.0 Test",150,,,2025-10-18T04:14:59.159Z,"2025-10-18 04:14:59"
+access_2,req_test_6wklowciebl_2,POST,/api/auth/login,401,,,192.168.1.2,"Mozilla/5.0 Test",50,,,2025-10-18T04:14:59.159Z,"2025-10-18 04:14:59"
+access_3,req_test_6wklowciebl_3,PUT,/api/admin/users,500,sanket@gmail.com,usr_sanket,192.168.1.1,"Mozilla/5.0 Test",2500,,,2025-10-18T04:14:59.159Z,"2025-10-18 04:14:59"
+access_bwo3no0i7wo,req_a7eeda74dcdd8de936618c0f,POST,/api/auth/login,200,,,::1,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",267,49,,2025-10-18T07:30:28.505Z,"2025-10-18 07:30:28"
+access_mbskiprl30g,req_106e64a882ae8378e9f7d5b7,POST,/api/auth/login,401,,,::1,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",133,48,,2025-10-18T11:28:05.201Z,"2025-10-18 11:28:05"
+access_0oj1p9lgy0pf,req_133357be54620afdb8ac7520,POST,/api/auth/login,401,,,::1,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",173,48,,2025-10-18T11:28:14.898Z,"2025-10-18 11:28:15"
+access_psx8i1pohnh,req_d5363376d1294f7caaba123d,POST,/api/auth/login,200,,,::1,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",203,49,,2025-10-18T11:28:22.292Z,"2025-10-18 11:28:22"

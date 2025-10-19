@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server';
-import { getAuditTrails } from '@/lib/db';
+import { getAuditTrails } from '@/lib/db-router';
 import { withRequestLogging } from '@/lib/logger';
 import { verifyJWT } from '@/lib/auth';
 
@@ -35,7 +35,7 @@ async function auditLogsHandler(req: NextRequest) {
   };
   
   try {
-    const logs = getAuditTrails(filters);
+    const logs = await (getAuditTrails as any)(filters);
     
     logger.info('admin', 'Audit trails retrieved', { 
       filters,

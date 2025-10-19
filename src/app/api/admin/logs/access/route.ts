@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server';
-import { getAccessLogs } from '@/lib/db';
+import { getAccessLogs } from '@/lib/db-router';
 import { withRequestLogging } from '@/lib/logger';
 import { verifyJWT } from '@/lib/auth';
 
@@ -35,7 +35,7 @@ async function accessLogsHandler(req: NextRequest) {
   };
   
   try {
-    const logs = getAccessLogs(filters);
+    const logs = await (getAccessLogs as any)(filters);
     
     logger.info('admin', 'Access logs retrieved', { 
       filters,
