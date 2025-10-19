@@ -32,6 +32,14 @@ export const getAuditTrails = (...args: Parameters<typeof sqlite.getAuditTrails>
 export const getLogStatistics = (...args: Parameters<typeof sqlite.getLogStatistics>) =>
   usePg ? (pgdb.getLogStatistics as any)(...args) : (sqlite.getLogStatistics as any)(...args);
 
+// Log writers
+export const logAccessRequest = (...args: Parameters<typeof sqlite.logAccessRequest>) =>
+  usePg ? (pgdb.logAccessRequest as any)(...args) : (sqlite.logAccessRequest as any)(...args);
+export const logAppEvent = (...args: Parameters<typeof sqlite.logAppEvent>) =>
+  usePg ? (pgdb.logAppEvent as any)(...args) : (sqlite.logAppEvent as any)(...args);
+export const logAuditTrail = (...args: Parameters<typeof sqlite.logAuditTrail>) =>
+  usePg ? (pgdb.logAuditTrail as any)(...args) : (sqlite.logAuditTrail as any)(...args);
+
 // Auth / users / profiles / roles
 export const getUserByEmail = (...args: Parameters<typeof sqlite.getUserByEmail>) =>
   usePg ? (pgdb.getUserByEmail as any)(...args) : (sqlite.getUserByEmail as any)(...args);

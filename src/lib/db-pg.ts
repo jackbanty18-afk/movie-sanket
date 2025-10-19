@@ -556,3 +556,24 @@ export async function getLogStatistics(days: number = 7) {
     period: `${days} days`,
   };
 }
+
+export async function logAccessRequest(data: { requestId: string; method: string; path: string; statusCode?: number; userEmail?: string; userId?: string; ipAddress?: string; userAgent?: string; durationMs?: number; requestSize?: number; responseSize?: number; timestamp: string; }) {
+  const sql = `INSERT INTO access_logs (id, request_id, method, path, status_code, user_email, user_id, ip_address, user_agent, duration_ms, request_size, response_size, timestamp) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)`;
+  const id = 'access_' + Math.random().toString(36).slice(2, 14);
+  await pgQuery(sql, [id, data.requestId, data.method, data.path, data.statusCode ?? null, data.userEmail ?? null, data.userId ?? null, data.ipAddress ?? null, data.userAgent ?? null, data.durationMs ?? null, data.requestSize ?? null, data.responseSize ?? null, data.timestamp]);
+  return id;
+}
+
+export async function logAppEvent(data: { requestId?: string; level: 'debug'|'info'|'warn'|'error'|'critical'; category: string; message: string; metadata?: any; userEmail?: string; userId?: string; timestamp?: string; }) {
+  const sql = `INSERT INTO app_logs (id, request_id, level, category, message, metadata, user_email, user_id, timestamp) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)`;
+  const id = 'log_' + Math.random().toString(36).slice(2, 14);
+  await pgQuery(sql, [id, data.requestId ?? null, data.level, data.category, data.message, data.metadata ? JSON.stringify(data.metadata) : null, data.userEmail ?? null, data.userId ?? null, data.timestamp ?? new Date().toISOString()]);
+  return id;
+}
+
+export async function logAuditTrail(data: { requestId?: string; action: string; resourceType: string; resourceId?: string; oldValues?: any; newValues?: any; userEmail: string; userId: string; ipAddress?: string; timestamp?: string; }) {
+  const sql = `INSERT INTO audit_trails (id, request_id, action, resource_type, resource_id, old_values, new_values, user_email, user_id, ip_address, timestamp) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`;
+  const id = 'audit_' + Math.random().toString(36).slice(2, 14);
+  await pgQuery(sql, [id, data.requestId ?? null, data.action, data.resourceType, data.resourceId ?? null, data.oldValues ? JSON.stringify(data.oldValues) : null, data.newValues ? JSON.stringify(data.newValues) : null, data.userEmail, data.userId, data.ipAddress ?? null, data.timestamp ?? new Date().toISOString()]);
+  return id;
+}

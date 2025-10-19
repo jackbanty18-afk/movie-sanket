@@ -1,13 +1,16 @@
 import { NextRequest } from "next/server";
-import { getRolesByEmail, listMovies, upsertMovie, deleteMovie, getMovie, listCategories, setMovieCategories, getMovieCategoryIds } from "@/lib/db-router";
+import { listMovies, upsertMovie, deleteMovie, getMovie, listCategories, setMovieCategories, getMovieCategoryIds } from "@/lib/db-router";
+import { verifyJWT } from "@/lib/auth";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 function assertAdmin(req: NextRequest) {
-  const email = req.headers.get("x-user-email") || "";
-  const roles = getRolesByEmail(email);
-  if (!roles.includes("admin")) throw new Response(JSON.stringify({ error: "forbidden" }), { status: 403 });
+  const auth = req.headers.get("authorization");
+  if (!auth?.startsWith("Bearer ")) throw new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
+  const payload = verifyJWT(auth.slice(7));
+  if (!payload || !Array.isArray((payload as any).roles) || !(payload as any).roles.includes("admin"))
+    throw new Response(JSON.stringify({ error: "Admin access required" }), { status: 403 });
 }
 
 export async function GET(req: NextRequest) {

@@ -1,4 +1,4 @@
-import { logAppEvent, logAccessRequest, logAuditTrail, ensureLoggingTables } from './db';
+import { logAppEvent, logAccessRequest, logAuditTrail } from './db-router';
 import { verifyJWT } from './auth';
 import crypto from 'crypto';
 
@@ -6,7 +6,7 @@ import crypto from 'crypto';
 (() => {
   const disable = !!process.env.DATABASE_URL || process.env.DISABLE_SQLITE === '1' || process.env.VERCEL === '1';
   if (!disable) {
-    try { ensureLoggingTables(); } catch { /* ignore in environments without sqlite */ }
+    import('./db').then(m => { try { (m as any).ensureLoggingTables?.(); } catch {} }).catch(() => {});
   }
 })();
 

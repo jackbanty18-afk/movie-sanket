@@ -1,9 +1,10 @@
 import { NextRequest } from "next/server";
-import { listTheatres } from "@/lib/db";
+import { listTheatres } from "@/lib/db-router";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function GET(_req: NextRequest) {
-  return Response.json({ theatres: listTheatres() });
+  const theatres = await (listTheatres as any)();
+  return Response.json({ theatres });
 }
