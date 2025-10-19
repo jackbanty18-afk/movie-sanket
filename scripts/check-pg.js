@@ -2,6 +2,15 @@ const fs = require('fs');
 const path = require('path');
 const { Pool } = require('pg');
 
+function normalize(cs) {
+  try {
+    const u = new URL(cs);
+    if (!u.searchParams.get('sslmode')) u.searchParams.set('sslmode', 'require');
+    if (!u.searchParams.get('pgbouncer')) u.searchParams.set('pgbouncer', 'true');
+    return u.toString();
+  } catch { return cs; }
+}
+
 (async () => {
   try {
     const envPath = path.join(process.cwd(), '.env.local');
@@ -17,7 +26,7 @@ const { Pool } = require('pg');
         }
       }
     }
-    const cs = process.env.DATABASE_URL;
+    let cs = process.env.DATABASE_URL;
     const driver = (process.env.DB_DRIVER || '').toLowerCase();
     if (!cs) {
       console.log('DATABASE_URL=NOT_SET');
@@ -33,10 +42,11 @@ const { Pool } = require('pg');
       console.log('DATABASE_URL_INVALID: contains unencoded @ in password. Encode @ as %40');
       process.exit(4);
     }
+    cs = normalize(cs);
     let host='(parse_error)';
     try { host = new URL(cs).host; } catch {}
     console.log('PG_TARGET_HOST', host);
-    const pool = new Pool({ connectionString: cs, ssl: { rejectUnauthorized: false }, max: 1, connectionTimeoutMillis: 10000 });
+    const pool = new Pool({ connectionString: cs, ssl: { rejectUnauthorized: false }, max: 1, keepAlive: true, connectionTimeoutMillis: 15000 });
     const r = await pool.query('select now() as now');
     console.log('PG_OK', r.rows[0]?.now ? 'NOW_OK' : 'NOW_MISSING');
     await pool.end();
